@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./paper.css";
+import Cell from "./Cell/cell";
 
 const records = [
   {
@@ -711,11 +712,11 @@ let coldata = [
   { id: "timezone", title: "Time Zone" }
 ];
 
-const validators=[
-    {
-        email:/^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/,
-        name:/^[A-Za-z]+$/,
-    }
+const validators = [
+  {
+    email: /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/,
+    name: /^[A-Za-z]+$/,
+  }
 ]
 
 let _haserror = false;
@@ -754,7 +755,6 @@ class Paper extends Component {
     let emailvalidator = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
     //{index === "first_name" ? param : "test"}
     // if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(pram))
-    console.log(column);
     if (column === "email")
       if (emailvalidator.test(param) === false) _haserror = true;
     let cell = (
@@ -764,7 +764,7 @@ class Paper extends Component {
           param === "" ? "cellerror" : "" || _haserror ? "cellerror" : ""
         }
       >
-        {param === "Tumelty" ? "hola" : param}
+        {_haserror ? <div className="tooltip">{param}<span className="tooltiptext">Invalid Email ID</span></div> : param}
       </td>
     );
     _haserror = false;
@@ -784,11 +784,11 @@ class Paper extends Component {
       //     }
       //   });
     });
-    console.log(incomingArray);
   };
   render = () => {
     return (
       <div class="table-responsive-vertical shadow-z-1">
+        <Cell />
         <table className="table table-hover table-mc-light-blue">
           <thead>
             <tr>{this.generateHeaders(coldata)}</tr>
