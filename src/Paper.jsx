@@ -41,7 +41,7 @@ const records = [
   {
     id: 6,
     first_name: "Tricia",
-    last_name: "Mascall",
+    last_name: "Mas5call",
     email: "tmascall5@dyndns.org",
     timezone: "6/2/2019"
   },
@@ -719,7 +719,7 @@ const validators = [
   }
 ]
 
-let _haserror = false;
+let _haserror = false; let _totalrecords ="Total recorsds : "+ records.length,_missingrecords=0,_errorrecords=0;
 class Paper extends Component {
   constructor(props) {
     super(props);
@@ -753,10 +753,17 @@ class Paper extends Component {
 
   generateCells = (index, param, column) => {
     let emailvalidator = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+    let string = /^[A-Za-z]+$/
+    let errmsg = ""
     //{index === "first_name" ? param : "test"}
     // if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(pram))
-    if (column === "email")
-      if (emailvalidator.test(param) === false) _haserror = true;
+    if (column === "first_name" || column === "last_name") {
+      if (string.test(param) === false) { _haserror = true; errmsg = "Invalid charachters only alphabets allowed" }
+      _errorrecords++;
+    }
+
+    else if (column === "email")
+      if (emailvalidator.test(param) === false) { _haserror = true; errmsg = "Invalid email ID,required format address@domain.co/com";_errorrecords++ }
     let cell = (
       <td
         key={index}
@@ -764,7 +771,7 @@ class Paper extends Component {
           param === "" ? "cellerror" : "" || _haserror ? "cellerror" : ""
         }
       >
-        {_haserror ? <div className="tooltip">{param}<span className="tooltiptext">Invalid Email ID</span></div> : param}
+        {_haserror ? <div className="tooltip">{param}<span className="tooltiptext">I{errmsg}</span></div> : param}
       </td>
     );
     _haserror = false;
@@ -787,7 +794,15 @@ class Paper extends Component {
   };
   render = () => {
     return (
-      <div class="table-responsive-vertical shadow-z-1">
+      <div className="table-responsive-vertical shadow-z-1">
+        <div className="card card-3">
+          <span class="chip primary">
+            {_totalrecords}
+          </span>
+          <span class="chip warning">
+           Invalid Records : {_errorrecords}
+          </span>
+        </div>
         <Cell />
         <table className="table table-hover table-mc-light-blue">
           <thead>

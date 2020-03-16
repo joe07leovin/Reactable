@@ -1,20 +1,20 @@
-.cellerror{
-    background-color: #ffcdd2 ;
+.cellerror {
+    background-color: #ffcdd2;
 }
 
-.rowerror{
-    background-color: #e57373 ;
+.rowerror {
+    background-color: #e57373;
 }
 
 .tooltip {
     position: relative;
     display: inline-block;
     border-bottom: 1px dotted black;
-  }
-  
-  .tooltip .tooltiptext {
+}
+
+.tooltip .tooltiptext {
     visibility: hidden;
-    width: 120px;
+    width: 200px;
     background-color: black;
     color: #fff;
     text-align: center;
@@ -25,9 +25,10 @@
     bottom: 150%;
     left: 50%;
     margin-left: -60px;
-  }
-  
-  .tooltip .tooltiptext::after {
+    cursor: pointer;
+}
+
+.tooltip .tooltiptext::after {
     content: "";
     position: absolute;
     top: 100%;
@@ -36,8 +37,52 @@
     border-width: 5px;
     border-style: solid;
     border-color: black transparent transparent transparent;
-  }
-  
-  .tooltip:hover .tooltiptext {
+}
+
+.tooltip:hover .tooltiptext {
     visibility: visible;
-  }
+}
+
+.card {
+    background: #fff;
+    border-radius: 2px;
+    display: inline-block;
+    min-height: 4em;
+    position: relative;
+    width: 100%;
+    padding-top:1em;
+}
+
+.card-3 {
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+.chip {
+    padding: 8px 10px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 12px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, .25);
+    margin: 0 10px;
+    cursor: pointer;
+}
+
+.chip.primary {
+    background: #2F4058;
+    color: whitesmoke;
+}
+
+.chip.secondary {
+    background: #242933;
+    color: #777;
+}
+
+.chip.warning {
+    background: #FEB904;
+    color: whitesmoke;
+}
+
+.chip.danger {
+    background: #DA605B;
+    color: whitesmoke;
+}
